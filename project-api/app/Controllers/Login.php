@@ -31,7 +31,7 @@ class Login extends BaseController {
             "sub" => "Subject of the JWT",
             "iat" => $iat,
             "exp" => $exp,
-            "email" => $ser['email'],
+            "email" => $user['email'],
         );
         $token = JWT::encode($payload, $key, 'HS256');
         $response = [

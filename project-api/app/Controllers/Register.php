@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Contorllers\BaseController;
+use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\UserModel;
 
