@@ -6,11 +6,11 @@ use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\UserModel;
 
-class User extends BaseController {
+class User_api extends BaseController {
     use ResponseTrait;
 
     public function index() {
-        $users = new UserModel;
-        return $this->respond(['users' => $users->findAll()], 200);
+        $users_api = new UserModel;
+        return $this->respond(['users_api' => $users_api->findAll()], 200);
     }
 }

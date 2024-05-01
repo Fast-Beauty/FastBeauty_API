@@ -28,7 +28,7 @@ class AddUser extends Migration
                 'type' => 'TIMESTAMP',
                 'null' => true
             ],
-            'update_at' => [
+            'updated_at' => [
                 'type' => 'TIMESTAMP',
                 'null' => true
             ],
@@ -36,11 +36,11 @@ class AddUser extends Migration
         ]);
 
     $this->forge->addPrimaryKey('id');
-    $this->forge->createTable('users');
+    $this->forge->createTable('users_api');
     }
 
     public function down()
     {
-        $this->forge->dropTable('users');
+        $this->forge->dropTable('users_api');
     }
 }
