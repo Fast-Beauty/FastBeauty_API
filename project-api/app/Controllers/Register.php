@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
-use App\Models\UserModel;
+use App\Models\UserApiModel;
 
 class Register extends BaseController {
     use ResponseTrait;
@@ -17,7 +17,7 @@ class Register extends BaseController {
         ];
 
         if($this->validate($rules)) {
-            $model = new UserModel();
+            $model = new UserApiModel();
             $data = [
                 'email' => $this->request->getVar('email'),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
