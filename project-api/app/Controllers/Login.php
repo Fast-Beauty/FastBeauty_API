@@ -23,8 +23,9 @@ class Login extends BaseController {
             return $this->respond(['error' => 'Invalid username or password.'], 401);
         }
         $key = getenv('JWT_SECRET');
+        $time = getenv('JWT_TIME');
         $iat = time();
-        $exp = $iat + 3600;
+        $exp = $iat + $time;
         $payload = array(
             "iss" => "Issuer of the JWT",
             "aud" => "Audience that the JWT",

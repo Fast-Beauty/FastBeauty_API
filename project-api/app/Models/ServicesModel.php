@@ -6,22 +6,18 @@ use CodeIgniter\Model;
 
 class ServicesModel extends Model
 {
+    protected $DBGroup          = 'default';
     protected $table            = 'services';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
+    protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
-
-    protected bool $allowEmptyInserts = false;
-    protected bool $updateOnlyChanged = true;
-
-    protected array $casts = [];
-    protected array $castHandlers = [];
+    protected $allowedFields    = ['name', 'description', 'price', 'time'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
