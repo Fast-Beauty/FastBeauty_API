@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ServicesModel extends Model
+class UserApiModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'services';
+    protected $table            = 'users_api';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'description', 'price', 'time'];
+    protected $allowedFields    = ['email', 'password'];
 
     // Dates
     protected $useTimestamps = true;
