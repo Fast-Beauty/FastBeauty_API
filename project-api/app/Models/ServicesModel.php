@@ -17,7 +17,7 @@ class ServicesModel extends Model
     protected $allowedFields    = ['name', 'description', 'price', 'time'];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

@@ -14,5 +14,8 @@ $routes->group("api", function($routes) {
 });
 
 $routes->group("services", function($routes) {
+    $routes->post("create", "Services::create");
+    $routes->post("update", "Services::update");
+    $routes->get("delete", "Services::delete");
     $routes->get("index", "Services::index", ['filter' => 'authFilter']);
 });
