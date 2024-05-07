@@ -16,3 +16,8 @@ $routes->group("api", function($routes) {
 $routes->group("services", function($routes) {
     $routes->get("index", "Services::index", ['filter' => 'authFilter']);
 });
+
+$routes->group("servicesimages", function($routes) {
+
+    $routes->get("index", "ServicesImages::index", ['filter' => 'authFilter']);
+});
