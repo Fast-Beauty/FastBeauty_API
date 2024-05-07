@@ -42,9 +42,8 @@ class Services extends BaseController {
         }
     }
     
-    public function update() {
+    public function update($id) {
         $rules = [
-            'id' => ['rules' => 'required'],
             'name' => ['rules' => 'required|min_length[3]|max_length[255]'],
             'description' => ['rules' => 'required|min_length[8]|max_length[255]'],
             'price' => ['rules' => 'required|min_length[3]|max_length[255]'],
@@ -52,7 +51,6 @@ class Services extends BaseController {
         ];
         if($this->validate($rules)) {
             $model = new ServicesModel();
-            $id = $this->request->getVar('id');
             $data = [
                 'name' => $this->request->getVar('name'),
                 'description' => $this->request->getVar('description'),
@@ -71,23 +69,10 @@ class Services extends BaseController {
         }
     }
 
-    public function delete() {
-        $rules = [
-            'id' => ['rules' => 'required']
-        ];
-
-        if($this->validate($rules)) {
-            $model = new ServicesModel();
-            $id = $this->request->getVar('id');
-            $model->where('id', $id)->delete($id);
-            return $this->respond(['message' => 'Deleted Successfully'], 200);
-        } else {
-            $response = [
-                'errors' => $this->validator->getErrors(),
-                'message' => 'Invalid Inputs'
-            ];
-            return $this->fail($response, 409);
-        }
+    public function delete($id) {
+        $model = new ServicesModel();
+        $model->where('id', $id)->delete($id);
+        return $this->respond(['message' => 'Deleted Successfully'], 200);
     }
 
 }
