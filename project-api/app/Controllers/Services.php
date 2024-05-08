@@ -14,5 +14,65 @@ class Services extends BaseController {
         return $this->respond(['services' => $services->findAll()], 200);
     }
 
+    public function create() {
+        $rules = [
+            'name' => ['rules' => 'required|min_length[3]|max_length[255]'],
+            'description' => ['rules' => 'required|min_length[8]|max_length[255]'],
+            'price' => ['rules' => 'required|min_length[3]|max_length[255]'],
+            'time' => ['rules' => 'required|min_length[2]|max_length[255]'],
+        ];
+
+        if($this->validate($rules)) {
+            $model = new ServicesModel();
+            $data = [
+                'name' => $this->request->getVar('name'),
+                'description' => $this->request->getVar('description'),
+                'price' => $this->request->getVar('price'),
+                'time' => $this->request->getVar('time')
+            ];
+            $model->save($data);
+
+            return $this->respond(['message' => 'Created Successfully'], 200);
+        } else {
+            $response = [
+                'errors' => $this->validator->getErrors(),
+                'message' => 'Invalid Inputs'
+            ];
+            return $this->fail($response, 409);
+        }
+    }
+    
+    public function update($id) {
+        $rules = [
+            'name' => ['rules' => 'required|min_length[3]|max_length[255]'],
+            'description' => ['rules' => 'required|min_length[8]|max_length[255]'],
+            'price' => ['rules' => 'required|min_length[3]|max_length[255]'],
+            'time' => ['rules' => 'required|min_length[2]|max_length[255]'],
+        ];
+        if($this->validate($rules)) {
+            $model = new ServicesModel();
+            $data = [
+                'name' => $this->request->getVar('name'),
+                'description' => $this->request->getVar('description'),
+                'price' => $this->request->getVar('price'),
+                'time' => $this->request->getVar('time')
+            ];
+            $model->update($id, $data);
+    
+            return $this->respond(['message' => 'Updated Successfully'], 200);
+        } else {
+            $response = [
+                'errors' => $this->validator->getErrors(),
+                'message' => 'Invalid Inputs'
+            ];
+            return $this->fail($response, 409);
+        }
+    }
+
+    public function delete($id) {
+        $model = new ServicesModel();
+        $model->where('id', $id)->delete($id);
+        return $this->respond(['message' => 'Deleted Successfully'], 200);
+    }
 
 }
