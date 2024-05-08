@@ -4,21 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class BranchImagesModel extends Model
+class ServicesModel extends Model
 {
-    protected $table            = 'branchimages';
+    protected $DBGroup          = 'default';
+    protected $table            = 'branch_images';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
+    protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
-
-    protected bool $allowEmptyInserts = false;
-    protected bool $updateOnlyChanged = true;
-
-    protected array $casts = [];
-    protected array $castHandlers = [];
+    protected $allowedFields    = ['url', 'type', 'size'];
 
     // Dates
     protected $useTimestamps = false;
