@@ -19,3 +19,10 @@ $routes->group("services", function($routes) {
     $routes->delete("delete/(:num)", "Services::delete/$1");
     $routes->get("index", "Services::index", ['filter' => 'authFilter']);
 });
+
+$routes->group("branch_office", function($routes) {
+    $routes->post("create", "Branch::create");
+    $routes->post("update/(:num)", "Branch::update/$1");
+    $routes->delete("delete/(:num)", "Branch::delete/$1");
+    $routes->get("index", "Branch::index", ['filter' => 'authFilter']);
+});
