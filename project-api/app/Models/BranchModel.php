@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class BranchModel extends Model
 {
-    protected $table            = 'branches';
+    protected $table            = 'branch_office';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['name', 'nit', 'addres', 'google_location', 'phone'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
