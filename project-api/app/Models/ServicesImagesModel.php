@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class ServicesImagesModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'services';
+    protected $table            = 'services_images';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -17,7 +17,7 @@ class ServicesImagesModel extends Model
     protected $allowedFields    = ['url', 'type', 'size'];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

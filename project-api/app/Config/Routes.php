@@ -18,6 +18,8 @@ $routes->group("services", function($routes) {
 });
 
 $routes->group("servicesimages", function($routes) {
-
+    $routes->post("create", "ServicesImages::create");
+    $routes->post("update/(:num)", "ServicesImages::update/$1");
+    $routes->delete("delete/(:num)", "ServicesImages::delete/$1");
     $routes->get("index", "ServicesImages::index", ['filter' => 'authFilter']);
 });
