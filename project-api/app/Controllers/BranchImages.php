@@ -15,7 +15,7 @@ class BranchImages extends BaseController{
 
     public function create() {
         $rules = [
-            'url' => ['rules' => 'required|min_length[10]|max_length[255]'],
+            'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
         ];
@@ -41,7 +41,7 @@ class BranchImages extends BaseController{
     
     public function update($id) {
         $rules = [
-            'url' => ['rules' => 'required|min_length[10]|max_length[255]'],
+            'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
         ];
