@@ -9,7 +9,7 @@ use App\Models\BranchImagesModel;
 class BranchImages extends BaseController{
     use ResponseTrait;
     public function index() {
-        $branch = new BranchImagesModel;
+        $branchimages = new BranchImagesModel;
         return $this->respond(['branch_images' => $branchimages->findAll()], 200);
     }
 

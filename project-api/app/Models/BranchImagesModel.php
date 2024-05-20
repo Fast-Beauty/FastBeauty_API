@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ServicesModel extends Model
+class BranchImagesModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'branch_images';
