@@ -14,7 +14,7 @@ class ServicesModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'description', 'price', 'time'];
+    protected $allowedFields    = ['name', 'description', 'price', 'time', 'branch_office_id'];
 
     // Dates
     protected $useTimestamps = false;
