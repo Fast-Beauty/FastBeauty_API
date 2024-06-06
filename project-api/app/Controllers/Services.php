@@ -20,6 +20,7 @@ class Services extends BaseController {
             'description' => ['rules' => 'required|min_length[8]|max_length[255]'],
             'price' => ['rules' => 'required|min_length[3]|max_length[255]'],
             'time' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'branch_office_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
 
         if($this->validate($rules)) {
@@ -28,7 +29,8 @@ class Services extends BaseController {
                 'name' => $this->request->getVar('name'),
                 'description' => $this->request->getVar('description'),
                 'price' => $this->request->getVar('price'),
-                'time' => $this->request->getVar('time')
+                'time' => $this->request->getVar('time'),
+                'branch_office_id' => $this->request->getVar('branch_office_id')
             ];
             $model->save($data);
 
@@ -48,6 +50,7 @@ class Services extends BaseController {
             'description' => ['rules' => 'required|min_length[8]|max_length[255]'],
             'price' => ['rules' => 'required|min_length[3]|max_length[255]'],
             'time' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'branch_office_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
         if($this->validate($rules)) {
             $model = new ServicesModel();
@@ -55,7 +58,8 @@ class Services extends BaseController {
                 'name' => $this->request->getVar('name'),
                 'description' => $this->request->getVar('description'),
                 'price' => $this->request->getVar('price'),
-                'time' => $this->request->getVar('time')
+                'time' => $this->request->getVar('time'),
+                'branch_office_id' => $this->request->getVar('branch_office_id')
             ];
             $model->update($id, $data);
     
