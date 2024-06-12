@@ -19,7 +19,7 @@ class ServicesImages extends BaseController {
             'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
-        
+            'services_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
 
         if($this->validate($rules)) {
@@ -28,7 +28,7 @@ class ServicesImages extends BaseController {
                 'url' => $this->request->getVar('url'),
                 'type' => $this->request->getVar('type'),
                 'size' => $this->request->getVar('size'),
-            
+                'services_id' => $this->request->getVar('services_id')
             ];
             $model->save($data);
 
@@ -47,7 +47,7 @@ class ServicesImages extends BaseController {
             'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
-        
+            'services_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
         if($this->validate($rules)) {
             $model = new ServicesImagesModel();
@@ -55,7 +55,7 @@ class ServicesImages extends BaseController {
                 'url' => $this->request->getVar('url'),
                 'type' => $this->request->getVar('type'),
                 'size' => $this->request->getVar('size'),
-            
+                'services_id' => $this->request->getVar('services_id')
             ];
             $model->update($id, $data);
     
