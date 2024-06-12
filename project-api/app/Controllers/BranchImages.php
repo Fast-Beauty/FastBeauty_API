@@ -18,6 +18,7 @@ class BranchImages extends BaseController{
             'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'branch_office_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
 
         if($this->validate($rules)) {
@@ -26,6 +27,7 @@ class BranchImages extends BaseController{
                 'url' => $this->request->getVar('url'),
                 'type' => $this->request->getVar('type'),
                 'size' => $this->request->getVar('size'),
+                'branch_office_id' => $this->request->getVar('branch_office_id')
             ];
             $model->save($data);
 
@@ -44,6 +46,7 @@ class BranchImages extends BaseController{
             'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'branch_office_id' => ['rules' => 'required|min_length[1]|max_length[255]'],
         ];
         if($this->validate($rules)) {
             $model = new BranchImagesModel();
@@ -51,6 +54,7 @@ class BranchImages extends BaseController{
                 'url' => $this->request->getVar('url'),
                 'type' => $this->request->getVar('type'),
                 'size' => $this->request->getVar('size'),
+                'branch_office_id' => $this->request->getVar('branch_office_id')
             ];
             $model->update($id, $data);
     
