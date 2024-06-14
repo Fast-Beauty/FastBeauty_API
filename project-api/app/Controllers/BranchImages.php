@@ -10,22 +10,24 @@ class BranchImages extends BaseController{
     use ResponseTrait;
     public function index() {
         $branchimages = new BranchImagesModel;
-        return $this->respond(['branch_images' => $branchimages->findAll()], 200);
+        $data = $branchimages->select('id, tipo_imagen, branch_office_id')->findAll();
+        return $this->respond(['branch_images' => $data], 200);
     }
 
     public function create() {
         $rules = [
-            'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'imagen' => ['rules' => 'uploaded[imagen]|max_size[imagen,2048]'],
+            'tipo_imagen' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'branch_office_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
 
         if($this->validate($rules)) {
             $model = new BranchImagesModel();
+            $imageFile = $this->request->getFile('imagen');
             $data = [
-                'url' => $this->request->getVar('url'),
-                'type' => $this->request->getVar('type'),
-                'size' => $this->request->getVar('size'),
+                'imagen' => file_get_contents($imageFile->getTempName()),
+                'tipo_imagen' => $this->request->getVar('tipo_imagen'),
+                'branch_office_id' => $this->request->getVar('branch_office_id')
             ];
             $model->save($data);
 
@@ -41,16 +43,17 @@ class BranchImages extends BaseController{
     
     public function update($id) {
         $rules = [
-            'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'imagen' => ['rules' => 'uploaded[imagen]|max_size[imagen,2048]'],
+            'tipo_imagen' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'branch_office_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
         if($this->validate($rules)) {
             $model = new BranchImagesModel();
+            $imageFile = $this->request->getFile('imagen');
             $data = [
-                'url' => $this->request->getVar('url'),
-                'type' => $this->request->getVar('type'),
-                'size' => $this->request->getVar('size'),
+                'imagen' => file_get_contents($imageFile->getTempName()),
+                'tipo_imagen' => $this->request->getVar('tipo_imagen'),
+                'branch_office_id' => $this->request->getVar('branch_office_id')
             ];
             $model->update($id, $data);
     
