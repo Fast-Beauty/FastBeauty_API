@@ -14,7 +14,7 @@ class ServicesImagesModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['url', 'type', 'size'];
+    protected $allowedFields    = ['imagen', 'tipo_imagen', 'services_id'];
 
     // Dates
     protected $useTimestamps = false;
