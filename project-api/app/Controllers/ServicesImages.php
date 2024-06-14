@@ -8,26 +8,25 @@ use App\Models\ServicesImagesModel;
 
 class ServicesImages extends BaseController {
     use ResponseTrait;
-
     public function index() {
         $servicesimages = new ServicesImagesModel;
-        return $this->respond(['servicesimages' => $servicesimages->findAll()], 200);
+        $data = $servicesimages->select('id, tipo_imagen, services_id')->findAll();
+        return $this->respond(['services_images' => $data], 200);
     }
 
     public function create() {
         $rules = [
-            'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'imagen' => ['rules' => 'uploaded[imagen]|max_size[imagen,2048]'],
+            'tipo_imagen' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'services_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
 
         if($this->validate($rules)) {
             $model = new ServicesImagesModel();
+            $imageFile = $this->request->getFile('imagen');
             $data = [
-                'url' => $this->request->getVar('url'),
-                'type' => $this->request->getVar('type'),
-                'size' => $this->request->getVar('size'),
+                'imagen' => file_get_contents($imageFile->getTempName()),
+                'tipo_imagen' => $this->request->getVar('tipo_imagen'),
                 'services_id' => $this->request->getVar('services_id')
             ];
             $model->save($data);
@@ -44,17 +43,16 @@ class ServicesImages extends BaseController {
     
     public function update($id) {
         $rules = [
-            'url' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'type' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'size' => ['rules' => 'required|min_length[2]|max_length[255]'],
+            'imagen' => ['rules' => 'uploaded[imagen]|max_size[imagen,2048]'],
+            'tipo_imagen' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'services_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
         if($this->validate($rules)) {
             $model = new ServicesImagesModel();
+            $imageFile = $this->request->getFile('imagen');
             $data = [
-                'url' => $this->request->getVar('url'),
-                'type' => $this->request->getVar('type'),
-                'size' => $this->request->getVar('size'),
+                'imagen' => file_get_contents($imageFile->getTempName()),
+                'tipo_imagen' => $this->request->getVar('tipo_imagen'),
                 'services_id' => $this->request->getVar('services_id')
             ];
             $model->update($id, $data);
