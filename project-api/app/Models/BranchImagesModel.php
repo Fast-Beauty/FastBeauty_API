@@ -14,7 +14,7 @@ class BranchImagesModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['url', 'type', 'size', 'branch_office_id'];
+    protected $allowedFields    = ['imagen', 'tipo_imagen', 'branch_office_id'];
 
     // Dates
     protected $useTimestamps = false;
