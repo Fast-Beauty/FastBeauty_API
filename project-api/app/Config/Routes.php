@@ -25,6 +25,7 @@ $routes->group("branchimages", function($routes) {
     $routes->post("update/(:num)", "BranchImages::update/$1");
     $routes->delete("delete/(:num)", "BranchImages::delete/$1");
     $routes->get("index", "BranchImages::index", ['filter' => 'authFilter']);
+});
   
 $routes->group("branch_office", function($routes) {
     $routes->post("create", "Branch::create");
