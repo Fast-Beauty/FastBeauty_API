@@ -42,8 +42,8 @@ $routes->group("servicesimages", function($routes) {
 });
 
 $routes->group("appointments", function($routes) {
-    $routes->post("create", "Appointments::create");
-    $routes->post("update/(:num)", "Appointments::update/$1");
-    $routes->delete("delete/(:num)", "Appointments::delete/$1");
-    $routes->get("index", "Appointments::index");
+    $routes->post("create", "Appointments::create", ['filter' => 'authFilter']);
+    $routes->post("update/(:num)", "Appointments::update/$1", ['filter' => 'authFilter']);
+    $routes->delete("delete/(:num)", "Appointments::delete/$1", ['filter' => 'authFilter']);
+    $routes->get("index", "Appointments::index", ['filter' => 'authFilter']);
 });
