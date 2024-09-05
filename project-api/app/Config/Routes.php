@@ -40,3 +40,10 @@ $routes->group("servicesimages", function($routes) {
     $routes->delete("delete/(:num)", "ServicesImages::delete/$1", ['filter' => 'authFilter']);
     $routes->get("index", "ServicesImages::index", ['filter' => 'authFilter']);
 });
+
+$routes->group("appointments", function($routes) {
+    $routes->post("create", "Appointments::create");
+    $routes->post("update/(:num)", "Appointments::update/$1");
+    $routes->delete("delete/(:num)", "Appointments::delete/$1");
+    $routes->get("index", "Appointments::index");
+});
