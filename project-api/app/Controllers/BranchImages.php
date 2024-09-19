@@ -9,6 +9,9 @@ use App\Models\BranchImagesModel;
 class BranchImages extends BaseController{
     use ResponseTrait;
     public function index() {
+        header('Access-Control-Allow-Origin: *'); 
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization');
         $branchimages = new BranchImagesModel;
         $data = $branchimages->select('id, tipo_imagen, branch_office_id')->findAll();
         return $this->respond(['branch_images' => $data], 200);
