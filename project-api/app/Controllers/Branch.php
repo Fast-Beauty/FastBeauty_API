@@ -6,14 +6,20 @@ use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\BranchModel;
 
-class Branch extends BaseController{
+class Branch extends BaseController
+{
     use ResponseTrait;
-    public function index() {
+    public function index()
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization');
         $branch = new BranchModel;
         return $this->respond(['branch_office' => $branch->findAll()], 200);
     }
 
-    public function create() {
+    public function create()
+    {
         $rules = [
             'name' => ['rules' => 'required|min_length[3]|max_length[255]'],
             'nit' => ['rules' => 'required|min_length[8]|max_length[255]'],
@@ -23,7 +29,7 @@ class Branch extends BaseController{
 
         ];
 
-        if($this->validate($rules)) {
+        if ($this->validate($rules)) {
             $model = new BranchModel();
             $data = [
                 'name' => $this->request->getVar('name'),
@@ -44,8 +50,9 @@ class Branch extends BaseController{
             return $this->fail($response, 409);
         }
     }
-    
-    public function update($id) {
+
+    public function update($id)
+    {
         $rules = [
             'name' => ['rules' => 'required|min_length[3]|max_length[255]'],
             'nit' => ['rules' => 'required|min_length[8]|max_length[255]'],
@@ -53,7 +60,7 @@ class Branch extends BaseController{
             'google_location' => ['rules' => 'required|min_length[8]|max_length[255]'],
             'phone' => ['rules' => 'required|min_length[8]|max_length[255]']
         ];
-        if($this->validate($rules)) {
+        if ($this->validate($rules)) {
             $model = new BranchModel();
             $data = [
                 'name' => $this->request->getVar('name'),
@@ -63,7 +70,7 @@ class Branch extends BaseController{
                 'phone' => $this->request->getVar('phone')
             ];
             $model->update($id, $data);
-    
+
             return $this->respond(['message' => 'Updated Successfully'], 200);
         } else {
             $response = [
@@ -74,10 +81,10 @@ class Branch extends BaseController{
         }
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $model = new BranchModel();
         $model->where('id', $id)->delete($id);
         return $this->respond(['message' => 'Deleted Successfully'], 200);
     }
-
 }

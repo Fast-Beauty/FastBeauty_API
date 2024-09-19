@@ -6,15 +6,21 @@ use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\ServicesModel;
 
-class Services extends BaseController {
+class Services extends BaseController
+{
     use ResponseTrait;
 
-    public function index() {
+    public function index()
+    {
+        header('Access-Control-Allow-Origin: *'); // Permite todas las orígenes. Cambia '*' por tu dominio si es necesario.
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization');
         $services = new ServicesModel;
         return $this->respond(['services' => $services->findAll()], 200);
     }
 
-    public function create() {
+    public function create()
+    {
         $rules = [
             'name' => ['rules' => 'required|min_length[3]|max_length[255]'],
             'description' => ['rules' => 'required|min_length[8]|max_length[255]'],
@@ -23,7 +29,7 @@ class Services extends BaseController {
             'branch_office_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
 
-        if($this->validate($rules)) {
+        if ($this->validate($rules)) {
             $model = new ServicesModel();
             $data = [
                 'name' => $this->request->getVar('name'),
@@ -43,8 +49,9 @@ class Services extends BaseController {
             return $this->fail($response, 409);
         }
     }
-    
-    public function update($id) {
+
+    public function update($id)
+    {
         $rules = [
             'name' => ['rules' => 'required|min_length[3]|max_length[255]'],
             'description' => ['rules' => 'required|min_length[8]|max_length[255]'],
@@ -52,7 +59,7 @@ class Services extends BaseController {
             'time' => ['rules' => 'required|min_length[2]|max_length[255]'],
             'branch_office_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
-        if($this->validate($rules)) {
+        if ($this->validate($rules)) {
             $model = new ServicesModel();
             $data = [
                 'name' => $this->request->getVar('name'),
@@ -62,7 +69,7 @@ class Services extends BaseController {
                 'branch_office_id' => $this->request->getVar('branch_office_id')
             ];
             $model->update($id, $data);
-    
+
             return $this->respond(['message' => 'Updated Successfully'], 200);
         } else {
             $response = [
@@ -73,10 +80,10 @@ class Services extends BaseController {
         }
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $model = new ServicesModel();
         $model->where('id', $id)->delete($id);
         return $this->respond(['message' => 'Deleted Successfully'], 200);
     }
-
 }
