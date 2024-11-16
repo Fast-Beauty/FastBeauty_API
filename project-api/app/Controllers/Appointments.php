@@ -57,6 +57,9 @@ class Appointments extends BaseController
 
     public function update($id)
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization');
         $rules = [
             'status' => ['rules' => 'required|min_length[3]|max_length[255]'],
             'date' => ['rules' => 'required|valid_date[Y-m-d H:i:s]'],

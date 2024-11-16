@@ -34,6 +34,20 @@ $routes->group("branch_office", function ($routes) {
     $routes->get("index", "Branch::index");
 });
 
+$routes->group("employees", function ($routes) {
+    $routes->post("create", "Employees::create", ['filter' => 'authFilter']);
+    $routes->post("update/(:num)", "Employees::update/$1", ['filter' => 'authFilter']);
+    $routes->delete("delete/(:num)", "Employees::delete/$1", ['filter' => 'authFilter']);
+    $routes->get("index", "Employees::index");
+});
+
+$routes->group("employeesimages", function ($routes) {
+    $routes->post("create", "EmployeesImages::create", ['filter' => 'authFilter']);
+    $routes->post("update/(:num)", "EmployeesImages::update/$1", ['filter' => 'authFilter']);
+    $routes->delete("delete/(:num)", "EmployeesImages::delete/$1", ['filter' => 'authFilter']);
+    $routes->get("index", "EmployeesImages::index");
+});
+
 $routes->group("servicesimages", function ($routes) {
     $routes->post("create", "ServicesImages::create", ['filter' => 'authFilter']);
     $routes->post("update/(:num)", "ServicesImages::update/$1", ['filter' => 'authFilter']);

@@ -4,9 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
-use App\Models\ServicesImagesModel;
+use App\Models\EmployeesImagesModel;
 
-class ServicesImages extends BaseController
+class EmployeesImages extends BaseController
 {
     use ResponseTrait;
     public function index()
@@ -14,12 +14,12 @@ class ServicesImages extends BaseController
         header('Access-Control-Allow-Origin: *'); // Permite todas las orígenes. Cambia '*' por tu dominio si es necesario.
         header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
         header('Access-Control-Allow-Headers: Content-Type, Authorization');
-        $servicesimages = new ServicesImagesModel;
-        $data = $servicesimages->select('id, tipo_imagen, services_id, imagen')->findAll();
+        $employeesimages = new EmployeesImagesModel;
+        $data = $employeesimages->select('id, Employees_id, imagen, tipo_imagen')->findAll();
         foreach ($data as &$item) {
             $item['imagen'] = base64_encode($item['imagen']); // Encode BLOB to base64
         }
-        return $this->respond(['services_images' => $data], 200);
+        return $this->respond(['employees_images' => $data], 200);
     }
 
     public function create()
@@ -27,16 +27,16 @@ class ServicesImages extends BaseController
         $rules = [
             'imagen' => ['rules' => 'uploaded[imagen]|max_size[imagen,2048]'],
             'tipo_imagen' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'services_id' => ['rules' => 'required|min_length[1]|max_length[255]']
+            'Employees_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
 
         if ($this->validate($rules)) {
-            $model = new ServicesImagesModel();
+            $model = new EmployeesImagesModel();
             $imageFile = $this->request->getFile('imagen');
             $data = [
                 'imagen' => file_get_contents($imageFile->getTempName()),
                 'tipo_imagen' => $this->request->getVar('tipo_imagen'),
-                'services_id' => $this->request->getVar('services_id')
+                'Employees_id' => $this->request->getVar('Employees_id')
             ];
             $model->save($data);
 
@@ -55,15 +55,15 @@ class ServicesImages extends BaseController
         $rules = [
             'imagen' => ['rules' => 'uploaded[imagen]|max_size[imagen,2048]'],
             'tipo_imagen' => ['rules' => 'required|min_length[2]|max_length[255]'],
-            'services_id' => ['rules' => 'required|min_length[1]|max_length[255]']
+            'Employees_id' => ['rules' => 'required|min_length[1]|max_length[255]']
         ];
         if ($this->validate($rules)) {
-            $model = new ServicesImagesModel();
+            $model = new EmployeesImagesModel();
             $imageFile = $this->request->getFile('imagen');
             $data = [
                 'imagen' => file_get_contents($imageFile->getTempName()),
                 'tipo_imagen' => $this->request->getVar('tipo_imagen'),
-                'services_id' => $this->request->getVar('services_id')
+                'Employees_id' => $this->request->getVar('Employees_id')
             ];
             $model->update($id, $data);
 
@@ -79,7 +79,7 @@ class ServicesImages extends BaseController
 
     public function delete($id)
     {
-        $model = new ServicesImagesModel();
+        $model = new EmployeesImagesModel();
         $model->where('id', $id)->delete($id);
         return $this->respond(['message' => 'Deleted Successfully'], 200);
     }
